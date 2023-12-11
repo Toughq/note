@@ -833,7 +833,7 @@ upstream webservers{
 
    <img src="assets/image-20221107161918913.png" alt="image-20221107161918913" style="zoom:50%;" />
 
-2. 使用MD5加密方式对明文密码加密
+2. 使用MD5加密方式对明文密码加密（如果感兴趣 可以再加一段uuid 增加加密复杂度，实际上MD5加密已经被穷举摸透了）
 
    <img src="assets/image-20221107160739680.png" alt="image-20221107160739680" style="zoom:50%;" />
 
@@ -965,6 +965,9 @@ knife4j是为Java MVC框架集成Swagger生成Api文档的增强解决方案,前
    WebMvcConfiguration.java
 
    ```java
+   @Configuration
+   @Slf4j
+   public class WebMvcConfiguration extends WebMvcConfigurationSupport {
    /**
         * 通过knife4j生成接口文档
         * @return
@@ -984,6 +987,7 @@ knife4j是为Java MVC框架集成Swagger生成Api文档的增强解决方案,前
                    .build();
            return docket;
        }
+   }
    ```
 
    
@@ -993,6 +997,9 @@ knife4j是为Java MVC框架集成Swagger生成Api文档的增强解决方案,前
    WebMvcConfiguration.java
 
    ```java
+   @Configuration
+   @Slf4j
+   public class WebMvcConfiguration extends WebMvcConfigurationSupport {
    /**
         * 设置静态资源映射
         * @param registry
@@ -1000,6 +1007,8 @@ knife4j是为Java MVC框架集成Swagger生成Api文档的增强解决方案,前
    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
            registry.addResourceHandler("/doc.html").addResourceLocations("classpath:/META-INF/resources/");
            registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+   }
+       
    }
    ```
 
